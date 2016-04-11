@@ -1,0 +1,31 @@
+<%= form_for @movie, html: { multipart: true } do |f| %>
+	<% if @movie.errors.any? %>
+		<div id='error'>
+			<h3><%= pluralize(@movie.errors.count,'error') %> prevented this post from edit</h3>
+			<ul>
+				<% @movie.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<p><%= f.label :title %><br>
+		<%= f.text_field :title %></p>
+
+	<p><%= f.label :description %><br>
+		<%= f.text_field :description %></p>
+
+	<p><%= f.label :movie_length, 'Movie Length' %><br>
+		<%= f.text_field :movie_length %></p>
+
+	<p><%= f.label :director, 'Director Name' %><br>
+		<%= f.text_field :director %></p>
+
+	<p><%= f.label :rating %><br>
+		<%= f.number_field :rating %></p>
+
+	<p><%= f.label :image %><br>
+		<%= f.file_field :image %></p>
+
+	<p><%= f.submit %></p>
+<% end %>

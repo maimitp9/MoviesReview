@@ -1,0 +1,27 @@
+<%= form_for([@movie, @review]) do |f| %>
+	<% if @review.errors.any? %>
+		<div id="error">
+			<h2><%= pluralize(@review.errors.count, "error") %> have stop to save review</h2>
+			<ul>
+				<% @review.errors.full_messages.each do |msg| %>
+							<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div id="star-rating"></div>
+	<p><%= f.label :comment %><br>
+		<%= f.text_area :comment %>
+	</p>
+	<p><%= f.submit %></p>
+<% end %>
+<script>
+	$('#star-rating').raty({
+		path: '/assets/',
+		scoreName: 'review[rating]' 
+	});
+</script>
+
+<!-- review[rating]-> review is model and rating is column name -->
+	
